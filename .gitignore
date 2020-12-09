@@ -925,7 +925,7 @@ DerivedData/
 *.tmPreferences.cache
 *.stTheme.cache
 
-# Workspace files are user-specific
+# Workspace files are users-specific
 *.sublime-workspace
 
 # Project files should be checked into the repository, unless a significant
