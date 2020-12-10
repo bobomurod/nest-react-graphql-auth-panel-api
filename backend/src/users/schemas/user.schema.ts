@@ -17,4 +17,4 @@ export class User {
   phone: string;
 }
 
-export const ProductSchema = SchemaFactory.createForClass(User);
+export const UserSchema = SchemaFactory.createForClass(User);
