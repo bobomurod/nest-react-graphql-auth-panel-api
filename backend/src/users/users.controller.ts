@@ -8,8 +8,8 @@ import {User} from "./schemas/user.schema";
 export class UsersController {
     constructor(private readonly userService: UsersService) {}
         @Get(':id')
-        getUserById(@Param('id') id: string): Promise<> {
-            return ''
+        getUserById(@Param('id') id: string): Promise<User> {
+            return ;
         }
 
         @Get()
@@ -19,7 +19,7 @@ export class UsersController {
 
         @Post()
         createUser(@Body() body: CreateUserDto): Promise<User> {
-            return this.userService.create(body)
+            return this.userService.createUser(body)
         }
 
         @Put(':id')
