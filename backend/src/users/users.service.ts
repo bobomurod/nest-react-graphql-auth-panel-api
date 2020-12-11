@@ -1,29 +1,25 @@
-import {Delete, Get, Injectable, Post, Put} from '@nestjs/common';
+import { Delete, Get, Injectable, Post, Put } from '@nestjs/common';
+import { User } from './schemas/user.schema';
 
 @Injectable()
 export class UsersService {
-    @Post
-    async create(): Promise<> {
-        return
-    }
+  async create(): Promise<User> {
+    return;
+  }
 
-    @Get
-    async getUSerById(): Promise<> {
-        return
-    }
+  async getUserById(): Promise<User> {
+    return;
+  }
 
-    @Get
-    async getAllUsers(): Promise<> {
-        return
-    }
+  async getAllUsers(): Promise<User> {
+    return;
+  }
 
-    @Put
-    async updateUser(): Promise<> {
-        return
-    }
+  async updateUser(): Promise<User> {
+    return;
+  }
 
-    @Delete
-    async removeUser(): Promise<> {
-        return
-    }
+  async removeUser(): Promise<boolean> {
+    return;
+  }
 }
