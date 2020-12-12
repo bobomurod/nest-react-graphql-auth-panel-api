@@ -7,7 +7,7 @@ import { TodosService } from './modules/todos/todos.service';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './modules/users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { AdminModule } from './admin/admin.module';
+import { AdminModule } from './modules/admin/admin.module';
 
 @Module({
   imports: [
