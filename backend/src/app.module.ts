@@ -7,6 +7,7 @@ import { TodosService } from './modules/todos/todos.service';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './modules/users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     GraphQLModule.forRoot({
       autoSchemaFile: true,
     }),
+    AdminModule,
   ],
   controllers: [AppController, TodosController],
   providers: [AppService, TodosService],
