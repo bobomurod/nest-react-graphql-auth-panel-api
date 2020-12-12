@@ -4,18 +4,20 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TodosController } from './todos/todos.controller';
 import { TodosService } from './todos/todos.service';
-import {ConfigModule} from "@nestjs/config";
-import {UsersModule} from "./users/users.module";
-import {MongooseModule} from "@nestjs/mongoose";
+import { ConfigModule } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
-      ConfigModule.forRoot(),
-      UsersModule,
-      MongooseModule.forRoot()
+    ConfigModule.forRoot(),
+    UsersModule,
+    MongooseModule.forRoot(
+      `mongodb+srv://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}/${process.env.DATABASE_NAME}?${process.env.DATABASE_OPTION}`,
+    ),
     GraphQLModule.forRoot({
       autoSchemaFile: true,
-  }),
+    }),
   ],
   controllers: [AppController, TodosController],
   providers: [AppService, TodosService],
