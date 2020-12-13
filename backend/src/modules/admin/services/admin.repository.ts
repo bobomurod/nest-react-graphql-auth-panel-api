@@ -1,4 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class AdminRepository {}
+export class AdminRepository {
+    async findOne(): Promise<> {
+        return;
+    }
+}
