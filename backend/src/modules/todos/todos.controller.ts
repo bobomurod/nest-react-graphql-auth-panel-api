@@ -15,27 +15,27 @@ export class TodosController {
   constructor(private readonly todosService: TodosService) {}
 
   @Get()
-  getAll(): Promise<> {
+  getAll(): Promise<any> {
     return this.todosService.getAll();
   }
 
   @Get()
-  getOne(@Param('id') id: string): Promise<> {
+  getOne(@Param('id') id: string): Promise<any> {
     return this.todosService.getOne(id);
   }
 
   @Post()
-  create(@Body() createTodo: CreateTodosDto): Promise<> {
+  create(@Body() createTodo: CreateTodosDto): Promise<any> {
     return this.todosService.create(createTodo);
   }
 
   @Put()
-  update(@Param('id') id: string): Promise<> {
+  update(@Param('id') id: string): Promise<any> {
     return this.todosService.update(id);
   }
 
   @Delete()
-  remove(@Param('id') id: string): Promise<> {
+  remove(@Param('id') id: string): Promise<any> {
     return this.todosService.remove(id);
   }
 }
