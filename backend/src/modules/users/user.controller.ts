@@ -1,12 +1,12 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UsersService } from './users.service';
+import { UserService } from './user.service';
 import { User } from './schemas/user.schema';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('users')
-export class UsersController {
-  constructor(private readonly userService: UsersService) {}
+export class UserController {
+  constructor(private readonly userService: UserService) {}
 
   @Get(':id')
   getUserById(@Param('id') id: string): Promise<User> {

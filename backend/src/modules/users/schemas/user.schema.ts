@@ -5,6 +5,9 @@ export type UserDocument = User & Document;
 
 export class User {
   @Prop()
+  id: string;
+
+  @Prop()
   username: string;
 
   @Prop()

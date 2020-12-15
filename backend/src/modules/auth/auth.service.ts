@@ -1,25 +1,26 @@
-import { AdminRepository } from '../admin/services/admin.repository';
-import { Admin } from '../admin/model/admin';
 import { JwtService } from '@nestjs/jwt';
-import {Injectable} from "@nestjs/common";
+import { Injectable } from '@nestjs/common';
+import { User } from '../users/schemas/user.schema';
+import { UserService } from '../users/user.service';
 
+@Injectable()
 export class AuthService {
   constructor(
-    private adminService: AdminRepository,
+    private readonly userService: UserService,
     private jwtService: JwtService,
   ) {}
 
-  async login(user: Admin): Promise<any> {
-    console.log(user)
+  async login(user: User): Promise<any> {
+    console.log(user);
     const payload = { user: user.username, sub: user.id };
     return {
       access_token: this.jwtService.sign(payload),
     };
   }
 
-  async validateAdmin(login: string, pass: string): Promise<any> {
-    console.log('validateAdmin')
-    const user: Admin = await this.adminService.findByLogin(login);
+  async validateUser(login: string, pass: string): Promise<any> {
+    console.log('validateAdmin');
+    const user: User = await this.userService.findOne(login);
     if (user && user.password === pass) {
       const { password, ...result } = user;
       return result;

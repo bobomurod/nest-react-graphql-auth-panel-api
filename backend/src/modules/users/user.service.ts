@@ -4,7 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
-export class UsersService {
+export class UserService {
   @Post()
   async createUser(createUserDto: CreateUserDto): Promise<User> {
     return;
@@ -28,5 +28,9 @@ export class UsersService {
   @Delete()
   async removeUser(id: string): Promise<boolean> {
     return;
+  }
+
+  async findOne(login) {
+    return login;
   }
 }
