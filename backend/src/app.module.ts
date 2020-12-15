@@ -15,11 +15,11 @@ import { AuthService } from './modules/auth/auth.service';
   imports: [
     ConfigModule.forRoot(),
     UsersModule,
+    AuthModule,
+    AdminModule,
     MongooseModule.forRoot(
       `mongodb+srv://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}/${process.env.DATABASE_NAME}?${process.env.DATABASE_OPTION}`,
     ),
-    AuthModule,
-    AdminModule,
   ],
   controllers: [AppController, TodosController, AuthController],
   providers: [AppService, TodosService, AuthService],

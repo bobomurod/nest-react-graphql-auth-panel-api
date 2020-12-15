@@ -8,12 +8,12 @@ export class AdminRepository {
     this.admins = [
       {
         id: '1',
-        login: 'bamborra',
+        username: 'bamborra',
         password: 'secret',
       },
     ];
   }
   async findByLogin(login: string): Promise<Admin | undefined> {
-    return this.admins.find(admin => admin.login === login);
+    return this.admins.find(admin => admin.username === login);
   }
 }
