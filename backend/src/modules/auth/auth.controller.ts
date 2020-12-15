@@ -2,7 +2,7 @@ import { Body, Controller, Get } from '@nestjs/common';
 import { Admin } from '../admin/model/admin';
 import { AuthService } from './auth.service';
 
-@Controller('auth')
+@Controller()
 export class AuthController {
   constructor(
     private readonly adminRepository: Admin,
@@ -12,7 +12,7 @@ export class AuthController {
   @Get()
   dashboard(@Body() loginInformation: Admin) {
     return this.authService.validateAdmin(
-      loginInformation.login,
+      loginInformation.username,
       loginInformation.password,
     );
   }
