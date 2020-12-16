@@ -1,7 +1,6 @@
-export class UpdateUserDto {
+export class UserRegistrationDto {
   username: string;
   login: string;
   password: string;
-  email: string;
   phone: string;
 }
