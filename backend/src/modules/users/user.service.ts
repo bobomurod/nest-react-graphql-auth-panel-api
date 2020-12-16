@@ -1,13 +1,32 @@
 import { Delete, Get, Injectable, Post, Put } from '@nestjs/common';
-import { User } from './schemas/user.schema';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { User, UserDocument } from './schemas/user.schema';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>,) {}
+
+  // users = [
+  //   {
+  //     username: 'bamborra',
+  //     password: 'secret',
+  //   },
+  //   {
+  //     username: 'barracuda',
+  //     password: 'secret',
+  //   },
+  //   {
+  //     username: 'bam',
+  //     password: 'secret',
+  //   },
+  // ];
+
   @Post()
-  async createUser(createUserDto: CreateUserDto): Promise<User> {
-    return;
+  async createUser(createUserDto: CreateUserDto): Promise<any> {
+    const createUser: UserDocument = new this.userModel(createUserDto);
   }
 
   @Get()
@@ -31,6 +50,6 @@ export class UserService {
   }
 
   async findOne(login) {
-    return login;
+    return this.userModel.findOne({ username: login });
   }
 }
