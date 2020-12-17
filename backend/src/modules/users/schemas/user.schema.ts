@@ -16,7 +16,7 @@ export class UserCollection extends Document{
   @Prop({ type: String, required: true })
   password: string;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, unique: true, required: true })
   phone: string;
 }
 
