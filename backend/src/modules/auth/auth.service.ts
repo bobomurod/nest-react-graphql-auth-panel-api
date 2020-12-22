@@ -2,8 +2,10 @@ import { JwtService } from '@nestjs/jwt';
 import {
   BadRequestException,
   Injectable,
+  InternalServerErrorException,
   UnauthorizedException,
 } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
 import { UserService } from '../users/user.service';
 import { UserLoginDto } from '../users/dto/user-login.dto';
 import { UserJwtPayloadDto } from '../users/dto/user-jwt-payload.dto';
@@ -40,16 +42,24 @@ export class AuthService {
     if (!data.username || !data.login || !data.phone || !data.password) {
       throw new BadRequestException('Invalid registration data');
     }
-    const _user = await this._userService
-      .createSingle(data)
-      .then((user) => user)
-      .catch(() => {
-        throw new UnauthorizedException(
-          'Unable to registration, please try later again or check data ',
-        );
-      });
-    const payload: UserJwtPayloadDto = { user: _user.username, sub: _user._id };
-    return { ...payload, ...{ accessToken: this._jwtService.sign(payload) } };
+    const _hashedPassword: string = await bcrypt.hash(data.password, 10);
+    try {
+      const _user = await this._userService
+        .createSingle({ ...data, password: _hashedPassword })
+        .then((user) => user)
+        .catch(() => {
+          throw new UnauthorizedException(
+            'Unable to registration, please try later again or check data ',
+          );
+        });
+      const payload: UserJwtPayloadDto = {
+        user: _user.username,
+        sub: _user._id,
+      };
+      return { ...payload, ...{ accessToken: this._jwtService.sign(payload) } };
+    } catch (error) {
+      throw new InternalServerErrorException();
+    }
   }
 
   async validateUser(login: string, pass: string): Promise<any> {
